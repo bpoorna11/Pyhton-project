@@ -1,4 +1,3 @@
-# Pyhton-project
 from Tkinter import *
 import Tkinter as tk
 import os
@@ -14,7 +13,7 @@ Label(root1,text="Mobile no: 9425678077",font="Arial 20 bold").grid(row=6,column
 Label(root1,text="e-mail: poornabhopal@gmail.com",font="Arial 20 bold").grid(row=8,column=0,sticky=W)
 def mainfunc():
     root1.destroy()
-    
+    #from PIL import ImageTk, Image
     import sqlite3
     import tkMessageBox
     con=sqlite3.Connection("Emp")
@@ -36,6 +35,8 @@ def mainfunc():
     oMenu = OptionMenu(root, v, *opts)
     oMenu.config(width=oMenuWidth)
     oMenu.grid(row=20,column=5)
+    #d=Entry(root,width=25,bd=5,bg='orange')
+    #d.grid(row=20,column=5)
     Label(root,text="Enter your age",font='arial 15 bold').grid(row=25,column=0,sticky=W)
     f=Entry(root,width=25,bd=5,bg='orange')
     f.grid(row=25,column=5)
@@ -66,7 +67,7 @@ def mainfunc():
     Label(root,text="Select room number",font="arial 20 bold").grid(row=60,column=0)
     var=IntVar()
     var.set("room no.")
-    x=OptionMenu(root,var,"201","202","203","204","205","301","302","303","304","305").grid(row=62,column=0)
+    x=OptionMenu(root,var,"201","202","203","204","205").grid(row=62,column=0)
     
     def insert():
         a=(e.get(),v.get(),int(f.get()),g.get(),h.get(),int(i.get()),l.get(),n.get(),int(var.get()))
@@ -83,22 +84,10 @@ def mainfunc():
         tkMessageBox.showinfo('Show',a)
         print a
     def showall():
-        gh=Tk()
         cur.execute("select * from Emp")
         a=cur.fetchall()
-        #tkMessageBox.showinfo('Showall',a)
-        count,r=0
-        for i in a:
-            r=r+1
-            count=0
-            for row in i:
-                print row
-                Label(gh,text=str(row)+' ').grid(row=r,column=count)
-                count=count+1
-
+        tkMessageBox.showinfo('Showall',a)
         print a
-        gh.mainloop()
-        
     def viewroom1():
         root2=Toplevel()
         a=PhotoImage(file='hollywood_room.gif')
